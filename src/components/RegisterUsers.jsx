@@ -141,7 +141,7 @@ const RegisterUsers = () => {
             <ANavbar3 />
             <div className="flex">
                 <AdminNavBar className="w-1/4 bg-gray-200" />
-                <div className="flex-1 p-4 md:p-8">
+                <div className="flex-1 ml-16 transition-all duration-300 ease-in-out p-4">
                     <div className="flex justify-end mb-4">
                         <button
                             onClick={handleDownloadTemplate}

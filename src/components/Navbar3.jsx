@@ -33,8 +33,8 @@ const Navbar3 = () => {
                         <Link to="/home"> {/* Add Link component to wrap the logoCircle */}
                             <motion.img
                                 src={logoCircle}
-                                alt="QuizMind AI"
-                                className="w-18 h-auto mr-2 cursor-pointer"
+                                alt="Navigate Labs"
+                                className="w-10 h-10 mr-2 object-contain cursor-pointer"
                                 initial={{ rotate: 0 }}
                                 animate={isLogoCircleAnimated ? { rotate: 360 } : {}}
                                 transition={{ duration: 1 }}
@@ -48,8 +48,8 @@ const Navbar3 = () => {
                         >
                             <img
                                 src={logoText}
-                                alt="QuizMind AI"
-                                className="w-auto h-8 md:h-auto"
+                                alt="Navigate Labs"
+                                className="h-6 w-auto object-contain"
                             />
                         </motion.div>
                     </div>

@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      spacing: {
+        '60px': '60px',
+        '220px': '220px',
+      },
       backdropBlur: {
         xs: '2px',
       },

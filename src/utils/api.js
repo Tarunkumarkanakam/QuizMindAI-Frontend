@@ -185,3 +185,134 @@ export const updateSession = async (email, sessionId, token, updatedSessionData)
         throw error;
     }
 };
+
+// Function to generate questions using your AI API
+export const generateQuestions = async (prompt, topic, numQuestions, complexity, onNewQuestion) => {
+    const OPENAI_API_KEY = 'sk-'; // Replace with your actual API key
+  
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${OPENAI_API_KEY}`,
+    };
+  
+    const actualTopic = topic || prompt;
+  
+    // Generate one question at a time to simulate streaming
+    for (let i = 0; i < numQuestions; i++) {
+      const adjustedPrompt = `
+  Generate one ${complexity} multiple-choice question on the topic "${actualTopic}". Provide the question with 4 options, indicate the correct answer, and include a brief explanation. Please output strictly in JSON format without any additional text, so the response is JSON parseable.
+  
+  Format the response as a JSON object with the following structure:
+  {
+    "questionText": "Question text",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correctOptionIndex": 0, // Index of the correct option (0-based)
+    "explanation": "Explanation of the correct answer",
+    "topic": "${actualTopic}"
+  }
+  `;
+  
+      const data = {
+        model: 'claude-v1', // Your specified model
+        messages: [
+          {
+            role: 'user',
+            content: adjustedPrompt,
+          },
+        ],
+        max_tokens: 300,
+        temperature: 0.7,
+      };
+  
+      try {
+        const response = await axios.post(
+          'https://api.nexus.navigatelabsai.com/v1/chat/completions', // Your API endpoint
+          data,
+          { headers }
+        );
+        const messageContent = response.data.choices[0].message.content;
+  
+        // Parse the assistant's reply
+        const question = JSON.parse(messageContent);
+  
+        // Pass the new question to the callback
+        onNewQuestion(question);
+      } catch (error) {
+        console.error('Error generating question:', error);
+        throw error;
+      }
+    }
+  };
+
+// // Function to generate questions using OpenAI API
+// export const generateQuestions = async (prompt, onNewQuestion) => {
+//   const OPENAI_API_KEY = 'sk-navigatelabsadmin'; // Replace with your OpenAI API key
+
+//   const headers = {
+//     'Content-Type': 'application/json',
+//     Authorization: `Bearer ${OPENAI_API_KEY}`,
+//   };
+
+  
+// // We'll generate one question at a time to simulate streaming
+// for (let i = 0; i < 15; i++) {
+//     const data = {
+//       model: 'claude-v1',
+//       messages: [
+//         {
+//           role: 'user',
+//           content: `Generate one multiple-choice question based on the following prompt. Provide the question with 4 options, indicate the correct answer, and include a brief explanation. Your are supposed to give strictly json only without any starting and ending text, The whole response should be json parse able.
+
+// Prompt: ${prompt}
+
+// Format the response as a JSON object with the following structure:
+// {
+//   "questionText": "Question text",
+//   "options": ["Option A", "Option B", "Option C", "Option D"],
+//   "correctOptionIndex": 0, // Index of the correct option (0-based)
+//   "explanation": "Explanation of the correct answer",
+//   "topic": "On what subject the user asked the question"
+// }`,
+//         },
+//       ],
+//       max_tokens: 300,
+//       temperature: 0.7,
+//     };
+
+//   try {
+//     const response = await axios.post(
+//       'https://api.nexus.navigatelabsai.com/v1/chat/completions',
+//       data,
+//       { headers }
+//     );
+//     const messageContent = response.data.choices[0].message.content;
+
+//       // Parse the assistant's reply
+//       const question = JSON.parse(messageContent);
+
+//       // Pass the new question to the callback
+//       onNewQuestion(question);
+//     } catch (error) {
+//       console.error('Error generating question:', error);
+//       throw error;
+//     }
+//   }
+// };
+
+export const saveQuestions = async (token, questions, examId) => {
+    try {
+      const response = await apiClient.post(
+        '/questions/save-questions', // Replace with your backend endpoint
+        { questions, examId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token if required
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error saving questions:', error);
+      throw error;
+    }
+  };

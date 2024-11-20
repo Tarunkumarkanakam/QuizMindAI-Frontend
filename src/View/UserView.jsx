@@ -150,7 +150,7 @@ const UserView = () => {
       <ANavbar3 />
       <div className="flex">
         <AdminNavBar />
-        <div className="p-4 flex-1">
+        <div className="flex-1 ml-16 transition-all duration-300 ease-in-out p-4">
           {loading ? (
             <p className="text-center text-gray-500">Loading users...</p>
           ) : (

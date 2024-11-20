@@ -222,7 +222,7 @@ const SessionManagement = () => {
       <ANavbar />
       <div className="flex flex-col md:flex-row">
         <AdminNavbar />
-        <div className="flex-1 p-4">
+       <div className="flex-1 ml-16 transition-all duration-300 ease-in-out p-4">
           <div className="p-4 mb-4 md:flex md:items-center md:justify-between">
             <div className="md:flex md:space-x-4">
               <select

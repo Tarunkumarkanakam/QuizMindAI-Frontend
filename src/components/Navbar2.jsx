@@ -8,7 +8,7 @@ const Navbar2 = () => {
         <img
           src={logo}
           alt="Navigate_Labs"
-          className="w-48 h-auto sm:w-64"
+          className="w-60 h-auto"
         />
       </div>
     </nav>

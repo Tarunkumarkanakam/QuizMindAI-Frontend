@@ -13,6 +13,7 @@ import RegisterUsers from "./components/RegisterUsers.jsx";
 import UserView from "./View/UserView.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import SessionManagement from "./View/SessionManagment.jsx";
+import GenerateMCQ from "./components/GenerateMCQ.jsx";
 
 const App = () => {
   return (
@@ -101,6 +102,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <ThankYouPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/questions/generate"
+            element={
+              <ProtectedRoute>
+                <GenerateMCQ />
               </ProtectedRoute>
             }
           />
