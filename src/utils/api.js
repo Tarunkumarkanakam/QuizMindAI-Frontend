@@ -188,7 +188,7 @@ export const updateSession = async (email, sessionId, token, updatedSessionData)
 
 // Function to generate questions using your AI API
 export const generateQuestions = async (prompt, topic, numQuestions, complexity, onNewQuestion) => {
-    const OPENAI_API_KEY = 'sk-'; // Replace with your actual API key
+    const OPENAI_API_KEY = 'sk-navigatelabsadmin'; // Replace with your actual API key
   
     const headers = {
       'Content-Type': 'application/json',

@@ -17,6 +17,12 @@ const ExamPage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [showWarning, setShowWarning] = useState(false);
 
+  const handleTimeUp = () => {
+    // Perform any cleanup if necessary
+    // Then navigate to ThankYou page
+    navigate('/ThankYou');
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -144,7 +150,7 @@ const ExamPage = () => {
   }
 
   return (
-    <TimerProvider duration={duration}>
+    <TimerProvider duration={duration} onTimeUp={handleTimeUp}>
       <ExamContent examData={examData} user={user} examId={examId} initialSelectedAnswers={selectedAnswers} />
     </TimerProvider>
   );

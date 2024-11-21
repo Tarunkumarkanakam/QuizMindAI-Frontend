@@ -1,0 +1,17 @@
+.question-highlight {
+    position: relative; /* Required for the pseudo-element to align properly */
+  }
+  
+  .question-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Align the bar to the bottom */
+    left: 15%; /* Leave 1/5 margin on the left */
+    right: 15%; /* Leave 1/5 margin on the right */
+    margin-bottom: 4px;
+    height: 4px; /* Thickness of the bar */
+    background: #0ff; /* Neon blue color */
+    border-radius: 2px; /* Smooth the edges of the bar */
+    box-shadow: 0 0 8px #0ff; /* Add a glowing neon effect */
+  }
+  
