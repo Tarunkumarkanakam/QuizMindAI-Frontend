@@ -188,7 +188,7 @@ export const updateSession = async (email, sessionId, token, updatedSessionData)
 
 // Function to generate questions using your AI API
 export const generateQuestions = async (prompt, topic, numQuestions, complexity, onNewQuestion) => {
-    const OPENAI_API_KEY = 'sk-navigatelabsadmin'; // Replace with your actual API key
+    const OPENAI_API_KEY = 'KEY'; // Replace with your actual API key
   
     const headers = {
       'Content-Type': 'application/json',
@@ -226,7 +226,7 @@ export const generateQuestions = async (prompt, topic, numQuestions, complexity,
   
       try {
         const response = await axios.post(
-          'https://api.nexus.navigatelabsai.com/v1/chat/completions', // Your API endpoint
+          'URL', // Your API endpoint
           data,
           { headers }
         );
